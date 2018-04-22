@@ -29,17 +29,20 @@ extractCoverage src regexStr =
 evaluate :: String -> [Threshold] -> [ThresholdEvaluationResult]
 evaluate src thresholds = do
   threshold <- thresholds
-  let coverage =
-        extractCoverage src (thresholdRegex threshold)
-      isPass =
-        coverage >= thresholdValue threshold
+  let 
+    coverage =
+      extractCoverage src (thresholdRegex threshold)
+    isPass =
+      coverage >= thresholdValue threshold
   return (threshold, coverage, isPass)
 
 reportThreshold :: ThresholdEvaluationResult -> String
 reportThreshold (Threshold tName _ tValue, coverage, isPass) =
-  let remark = if isPass then "✓" else "·"
-      sign = if isPass then "≥" else "<"
-  in  [i|#{remark} #{tName}: #{coverage}% (#{sign} #{tValue}%)|]
+  let
+    remark = if isPass then "✓" else "·"
+    sign = if isPass then "≥" else "<"
+  in
+    [i|#{remark} #{tName}: #{coverage}% (#{sign} #{tValue}%)|]
 
 evaluateAndReport :: String -> [Threshold] -> (String, Bool)
 evaluateAndReport src thresholds =
