@@ -1,0 +1,11 @@
+ 67% expressions used (72/106)
+ 14% boolean coverage (1/7)
+     16% guards (1/6), 2 always True, 2 always False, 1 unevaluated
+      0% 'if' conditions (0/1), 1 always True
+    100% qualifiers (0/0)
+ 42% alternatives used (3/7)
+ 88% local declarations used (8/9)
+ 80% top-level declarations used (4/5)
+unused declarations:
+    position
+    showRecip.p

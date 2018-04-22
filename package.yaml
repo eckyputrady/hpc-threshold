@@ -1,0 +1,56 @@
+name:                hpc-threshold
+version:             0.1.0.0
+github:              "eckyputrady/hpc-threshold"
+license:             BSD3
+author:              "Ecky Putrady"
+maintainer:          "eckyputrady@gmail.com"
+copyright:           "2018 Ecky Putrady"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Small utility for validating whether HPC result is above some thresholds
+category:            Development
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/eckyputrady/hpc-threshold#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+default-extensions:
+- OverloadedStrings
+- QuasiQuotes
+
+library:
+  source-dirs: src
+  dependencies:
+    - pcre-heavy
+    - bytestring
+    - interpolate
+
+executables:
+  hpc-threshold:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hpc-threshold
+
+tests:
+  hpc-threshold-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hpc-threshold

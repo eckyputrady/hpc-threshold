@@ -1,0 +1,6 @@
+.stack-work
+.hspec-failures
+*.tix
+.DS_Store
+*.cabal
+dist
