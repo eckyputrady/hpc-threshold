@@ -1,5 +1,7 @@
 # hpc-threshold
 
+[![Build Status](https://travis-ci.org/eckyputrady/hpc-threshold.svg?branch=master)](https://travis-ci.org/eckyputrady/hpc-threshold)
+
 `hpc-threshold` ensures the code coverage of your Haskell project is above configured thresholds. This program is meant to be used within a CI pipeline, in which the build will fail if the code coverage falls below the configured thresholds.
 
 The program reads a configuration file named `.hpc-threshold` and parse [Haskell Program Coverage (HPC)](https://wiki.haskell.org/Haskell_program_coverage) text from `stdin`. The program outputs a report and will terminate with exit code 1 if the coverage falls below the configured threshold, and exit code 0 otherwise.
@@ -96,3 +98,7 @@ And the exit code is 0:
 $ echo $?
 0
 ```
+
+## Developer Guide
+
+See `.travis.yml`, under `scripts` section to see how to build the application
