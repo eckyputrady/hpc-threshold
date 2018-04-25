@@ -4,6 +4,7 @@ import Text.Regex.PCRE.Heavy
 import Data.ByteString (ByteString)
 import Data.String.Interpolate
 
+-- | Data structure for a single threshold configuration.
 data Threshold = Threshold
   { thresholdName :: String
   , thresholdRegex :: ByteString
@@ -11,9 +12,15 @@ data Threshold = Threshold
   } deriving (Read, Show, Eq)
 
 type Coverage = Double
+
+-- | The result of evaluation. The _3 indicates whether the coverage passes the threshold or not.
 type ThresholdEvaluationResult = (Threshold, Coverage, Bool)
 
-extractCoverage :: String -> ByteString -> Coverage
+-- | Extract the coverage from input string using a regex string
+extractCoverage 
+  :: String -- ^ The input string
+  -> ByteString -- ^ The regex to extract the coverage. The regex should contain `(\\d+)` capture otherwise the coverage is always be 0.
+  -> Coverage -- ^ The extracted coverage
 extractCoverage src regexStr =
   case compileM regexStr [] of
     Left e ->
@@ -25,6 +32,7 @@ extractCoverage src regexStr =
         _ ->
           0
 
+-- | Evaluate the given string against the given threshold, producing an evaluation result
 evaluate :: String -> Threshold -> ThresholdEvaluationResult
 evaluate src threshold =
   let 
@@ -35,6 +43,7 @@ evaluate src threshold =
   in
     (threshold, coverage, isPass)
 
+-- | Produce a human-friendly output of the evaluation result
 reportThreshold :: ThresholdEvaluationResult -> String
 reportThreshold (Threshold tName _ tValue, coverage, isPass) =
   let
@@ -43,7 +52,11 @@ reportThreshold (Threshold tName _ tValue, coverage, isPass) =
   in
     [i|#{remark} #{tName}: #{coverage}% (#{sign} #{tValue}%)|]
 
-evaluateAndReport :: String -> [Threshold] -> (String, Bool)
+-- | Evaluate a string against a list of thresholds configuration and produce a report
+evaluateAndReport
+  :: String -- ^ The input string
+  -> [Threshold] -- ^ The list of thresholds
+  -> (String, Bool) -- ^ Pair of report and whether there is any coverage under thresholds
 evaluateAndReport src thresholds =
   let
     evalResults = map (evaluate src) thresholds
