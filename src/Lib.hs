@@ -3,13 +3,12 @@ module Lib where
 import Text.Regex.PCRE.Heavy
 import Data.ByteString (ByteString)
 import Data.String.Interpolate
-import System.Exit
 
 data Threshold = Threshold
   { thresholdName :: String
   , thresholdRegex :: ByteString
   , thresholdValue :: Double
-  } deriving (Read, Show)
+  } deriving (Read, Show, Eq)
 
 type Coverage = Double
 type ThresholdEvaluationResult = (Threshold, Coverage, Bool)
@@ -56,14 +55,4 @@ evaluateAndReport src thresholds =
     report = unlines $ reportSummary : map reportThreshold evalResults
   in
     (report, isAllThresholdPass)
-
-evaluateAndReport' :: IO ()
-evaluateAndReport' = do
-  thresholds <- readFile ".hpc-threshold" >>= return . read
-  src <- getContents
-  let (report, isPass) = evaluateAndReport src thresholds
-  putStrLn report
-  if isPass
-    then exitWith ExitSuccess
-    else exitWith $ ExitFailure 1
 
