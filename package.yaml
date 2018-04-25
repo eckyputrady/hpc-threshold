@@ -1,5 +1,5 @@
 name:                hpc-threshold
-version:             0.1.0.0
+version:             0.1.0.1
 github:              "eckyputrady/hpc-threshold"
 license:             BSD3
 author:              "Ecky Putrady"
@@ -23,7 +23,6 @@ default-extensions:
 
 ghc-options:
 - -Wall
-- -Werror
 - -Wincomplete-record-updates
 - -Wincomplete-uni-patterns
 - -Wredundant-constraints
