@@ -30,6 +30,7 @@ before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+- stack install hlint weeder # static analysis tools
 
 install:
 # Build dependencies
@@ -40,3 +41,6 @@ script:
 - stack build --no-terminal --test --coverage
 # Dog food our own application, yo!
 - stack hpc report --all --no-terminal 2>&1 | stack exec hpc-threshold
+# Hlint & weeder
+- ~/.local/bin/hlint .
+- ~/.local/bin/weeder .

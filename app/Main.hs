@@ -5,7 +5,7 @@ import System.Exit
 
 main :: IO ()
 main = do
-  thresholds <- readFile ".hpc-threshold" >>= return . read
+  thresholds <- read <$> readFile ".hpc-threshold"
   src <- getContents
   let (report, isPass) = evaluateAndReport src thresholds
   putStrLn report

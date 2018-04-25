@@ -1,6 +1,7 @@
 # hpc-threshold
 
 [![Build Status](https://travis-ci.org/eckyputrady/hpc-threshold.svg?branch=master)](https://travis-ci.org/eckyputrady/hpc-threshold)
+[![Hackage version](https://img.shields.io/hackage/v/hpc-threshold.svg?label=Hackage)](https://hackage.haskell.org/package/hpc-threshold)
 
 `hpc-threshold` ensures the code coverage of your Haskell project is above configured thresholds. This program is meant to be used within a CI pipeline, in which the build will fail if the code coverage falls below the configured thresholds.
 
