@@ -10,7 +10,7 @@ extra-source-files:
 - README.md
 - ChangeLog.md
 
-synopsis:            Small utility for validating whether HPC result is above defined thresholds
+synopsis:            Configurable code coverage threshold for Haskell
 category:            Development
 description:         Please see the README on Github at <https://github.com/eckyputrady/hpc-threshold#readme>
 

@@ -1,7 +1,7 @@
 [ Threshold 
     { thresholdName = "Expressions used"
     , thresholdRegex = "(\\d+)% expressions used"
-    , thresholdValue = 60.0
+    , thresholdValue = 80.0
     }
 , Threshold 
     { thresholdName = "Boolean coverage"

@@ -14,11 +14,11 @@ data Threshold = Threshold
 type Coverage = Double
 type ThresholdEvaluationResult = (Threshold, Coverage, Bool)
 
-extractCoverage :: String -> ByteString -> Double
+extractCoverage :: String -> ByteString -> Coverage
 extractCoverage src regexStr =
   case compileM regexStr [] of
     Left e ->
-      error e
+      error $ "Unable to compile regex " ++ show regexStr ++ ": " ++ e 
     Right regex ->
       case scan regex src of
         (_, coverage:_):_ ->
@@ -26,15 +26,15 @@ extractCoverage src regexStr =
         _ ->
           0
 
-evaluate :: String -> [Threshold] -> [ThresholdEvaluationResult]
-evaluate src thresholds = do
-  threshold <- thresholds
+evaluate :: String -> Threshold -> ThresholdEvaluationResult
+evaluate src threshold =
   let 
     coverage =
       extractCoverage src (thresholdRegex threshold)
     isPass =
       coverage >= thresholdValue threshold
-  return (threshold, coverage, isPass)
+  in
+    (threshold, coverage, isPass)
 
 reportThreshold :: ThresholdEvaluationResult -> String
 reportThreshold (Threshold tName _ tValue, coverage, isPass) =
@@ -47,7 +47,7 @@ reportThreshold (Threshold tName _ tValue, coverage, isPass) =
 evaluateAndReport :: String -> [Threshold] -> (String, Bool)
 evaluateAndReport src thresholds =
   let
-    evalResults = evaluate src thresholds
+    evalResults = map (evaluate src) thresholds
     isAllThresholdPass = all (\(_, _, isPass) -> isPass) evalResults
     reportSummary =
       if isAllThresholdPass
