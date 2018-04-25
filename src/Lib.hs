@@ -38,8 +38,8 @@ evaluate src threshold =
 reportThreshold :: ThresholdEvaluationResult -> String
 reportThreshold (Threshold tName _ tValue, coverage, isPass) =
   let
-    remark = if isPass then "✓" else "·"
-    sign = if isPass then "≥" else "<"
+    remark = if isPass then "✓" else "·" :: String
+    sign = if isPass then "≥" else "<" :: String
   in
     [i|#{remark} #{tName}: #{coverage}% (#{sign} #{tValue}%)|]
 

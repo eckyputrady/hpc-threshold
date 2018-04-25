@@ -36,6 +36,7 @@ install:
 - stack --no-terminal --install-ghc test --only-dependencies
 
 script:
-# Build the package, its tests, and its code coverage reposrt
+# Build the package, its tests, and its code coverage report
 - stack build --no-terminal --test --coverage
-- stack hpc report 2>&1 | stack exec hpc-threshold
+# Dog food our own application, yo!
+- stack hpc report --all --no-terminal 2>&1 | stack exec hpc-threshold
