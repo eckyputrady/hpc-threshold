@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import HPCThreshold
 import System.Exit
 
 main :: IO ()

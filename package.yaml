@@ -1,5 +1,5 @@
 name:                hpc-threshold
-version:             0.1.0.1
+version:             0.1.0.3
 github:              "eckyputrady/hpc-threshold"
 license:             BSD3
 author:              "Ecky Putrady"
@@ -10,7 +10,7 @@ extra-source-files:
 - README.md
 - ChangeLog.md
 
-synopsis:            Configurable code coverage threshold for Haskell
+synopsis:            Ensure the code coverage is above configured thresholds
 category:            Development
 description:         Please see the README on Github at <https://github.com/eckyputrady/hpc-threshold#readme>
 

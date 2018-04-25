@@ -1,4 +1,4 @@
-module Lib where
+module HPCThreshold where
 
 import Text.Regex.PCRE.Heavy
 import Data.ByteString (ByteString)
@@ -68,4 +68,3 @@ evaluateAndReport src thresholds =
     report = unlines $ reportSummary : map reportThreshold evalResults
   in
     (report, isAllThresholdPass)
-

@@ -1,9 +1,9 @@
-module LibSpec where
+module HPCThresholdSpec where
 
 import Test.Hspec
 import qualified Control.Exception as E
 import qualified Control.DeepSeq as D
-import Lib
+import HPCThreshold
 
 spec :: Spec
 spec = do
