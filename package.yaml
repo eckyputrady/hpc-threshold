@@ -21,6 +21,13 @@ default-extensions:
 - OverloadedStrings
 - QuasiQuotes
 
+ghc-options:
+- -Wall
+- -Werror
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+
 library:
   source-dirs: src
   dependencies:

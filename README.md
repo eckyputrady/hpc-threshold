@@ -56,10 +56,10 @@ stack test --coverage
 Then, generate a text report and feed that into `hpc-threshold`:
 
 ```
-(stack hpc report --all 2&>1) | hpc-threshold
+stack hpc report --all 2>&1 | hpc-threshold
 ```
 
-The stderr -> stdout redirection is necessary there because `stack hpc report` outputs the result in stderr, but we want to pipe that into `hpc-threshold`.
+The `stderr` -> `stdout` redirection is necessary there because `stack hpc report` outputs the result in `stderr`, but we want to pipe that into `hpc-threshold`.
 
 Then, you'll get an output similar to the following:
 

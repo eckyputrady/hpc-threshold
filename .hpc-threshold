@@ -6,12 +6,12 @@
 , Threshold 
     { thresholdName = "Boolean coverage"
     , thresholdRegex = "(\\d+)% boolean coverage"
-    , thresholdValue = 10.0
+    , thresholdValue = 80.0
     }
 , Threshold 
     { thresholdName = "Alternatives used"
     , thresholdRegex = "(\\d+)% alternatives used"
-    , thresholdValue = 40.0
+    , thresholdValue = 80.0
     }
 , Threshold 
     { thresholdName = "Local declarations used"
@@ -21,6 +21,6 @@
 , Threshold 
     { thresholdName = "Top-level declarations used"
     , thresholdRegex = "(\\d+)% top-level declarations used"
-    , thresholdValue = 80.0
+    , thresholdValue = 60.0
     }
 ]
