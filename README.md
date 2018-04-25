@@ -1,18 +1,18 @@
 # hpc-threshold
 
-This is a small utility for validating whether HPC result is above some defined thresholds. This program is meant to be used within a CI pipeline, in which the build will fail if the code coverage falls below the thresholds.
+`hpc-threshold` ensures the code coverage of your Haskell project is above configured thresholds. This program is meant to be used within a CI pipeline, in which the build will fail if the code coverage falls below the configured thresholds.
 
-The program reads a configuration file named `.hspec-threshold` and parse HPC text from stdin. The program outputs a report and will terminate with status code 1 if the coverage falls below threshold, and 0 otherwise.
+The program reads a configuration file named `.hpc-threshold` and parse [Haskell Program Coverage (HPC)](https://wiki.haskell.org/Haskell_program_coverage) text from `stdin`. The program outputs a report and will terminate with exit code 1 if the coverage falls below the configured threshold, and exit code 0 otherwise.
 
 ## User Guide
 
-Install the utility by using stack
+Install the program by using stack
 
 ```
 stack install hpc-threshold
 ```
 
-Then, create a configuration file named `.hspec-threshold`:
+Then, create a configuration file named `.hpc-threshold`:
 
 ```
 [ Threshold 
@@ -43,9 +43,9 @@ Then, create a configuration file named `.hspec-threshold`:
 ]
 ```
 
-- `thresholdRegex` is the regex to be used for extracting the coverage from HPC report. It requires 1 digit capture.
+- `thresholdRegex` is the regex to be used for extracting the coverage from HPC report. There should be one `(\\d+)` in the regex.
 - `thresholdValue` is the threshold for the code coverage.
-- `thresholdName` will be used for the threshold report
+- `thresholdName` will be used for the threshold report.
 
 Then, build the coverage report:
 
@@ -72,7 +72,7 @@ Code coverage threshold check: FAIL
 ✓ Top-level declarations used: 80.0% (≥ 80.0%)
 ```
 
-If we check the exit code of the last process, we'll get `1` since some coverage areas are below the configured threshold
+If we check the exit code of the last process, we'll get `1` since some code coverage areas are below the configured threshold:
 
 ```
 $ echo $?
@@ -90,7 +90,7 @@ Code coverage threshold check: PASS
 ✓ Top-level declarations used: 80.0% (≥ 80.0%)
 ```
 
-And the exit code is 0
+And the exit code is 0:
 
 ```
 $ echo $?
